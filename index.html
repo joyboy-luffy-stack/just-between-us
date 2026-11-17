@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Fejiro.</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #0b0b0d;
+  color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.card {
+  width: 100%;
+  max-width: 390px;
+  animation: enter .5s ease;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+  display: none;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #777;
+}
+
+.status {
+  font-size: 10px;
+  color: #8bd6a1;
+}
+
+.line {
+  height: 1px;
+  background: #262629;
+  margin-bottom: 35px;
+}
+
+h1 {
+  font-size: clamp(30px, 8vw, 39px);
+  letter-spacing: -1.8px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #777;
+  margin-bottom: 9px;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  background: #151518;
+  border: 1px solid #29292e;
+  border-radius: 9px;
+  color: white;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #777;
+}
+
+button {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.primary {
+  width: 100%;
+  background: white;
+  color: #111;
+  border: none;
+  margin-top: 8px;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid #353539;
+  flex: 1;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.footer {
+  font-size: 10px;
+  color: #555;
+  letter-spacing: 1px;
+  margin-top: 45px;
+}
+
+#error {
+  color: #e18b8b;
+  font-size: 12px;
+  margin-top: 14px;
+}
+
+.question {
+  font-size: 31px;
+  letter-spacing: -1.4px;
+  line-height: 1.25;
+  margin-top: 25px;
+}
+
+.response {
+  font-size: 23px;
+  line-height: 1.5;
+  letter-spacing: -.6px;
+  margin-top: 25px;
+}
+
+.accent {
+  color: #aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section class="card" id="login">
+
+  <div class="top">
+    <span class="tag">PRIVATE ACCESS</span>
+    <span class="status">● ONLINE</span>
+  </div>
+
+  <div class="line"></div>
+
+  <h1>You're not supposed to be here.</h1>
+
+  <p>
+    Well, actually, you are.
+    Enter your credentials.
+  </p>
+
+  <form id="loginForm">
+
+    <div class="field">
+      <label>USERNAME</label>
+      <input
+        id="username"
+        type="text"
+        placeholder="Your username"
+        required
+      >
+    </div>
+
+    <div class="field">
+      <label>PASSWORD</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Your password"
+        required
+      >
+    </div>
+
+    <button class="primary" type="submit">
+      Continue →
+    </button>
+
+  </form>
+
+  <div id="error"></div>
+
+  <div class="footer">
+    SOMEWHERE ON THE INTERNET · 2026
+  </div>
+
+</section>
+
+
+<!-- QUESTION -->
+
+<section class="card hidden" id="question">
+
+  <div class="top">
+    <span class="tag">ACCESS GRANTED</span>
+    <span class="status">● VERIFIED</span>
+  </div>
+
+  <div class="line"></div>
+
+  <h1>Hey mama.</h1>
+
+  <p>
+    I have a question.
+    Don't make it weird.
+  </p>
+
+  <div class="question">
+    Wanna be my girlfriend again?
+  </div>
+
+  <div class="buttons">
+    <button class="primary" onclick="yes()">
+      Yes.
+    </button>
+
+    <button class="secondary" onclick="no()">
+      No.
+    </button>
+  </div>
+
+  <div class="footer">
+    THERE IS NO WRONG ANSWER. (KIND OF.)
+  </div>
+
+</section>
+
+
+<!-- RESPONSE -->
+
+<section class="card hidden" id="response">
+
+  <div class="top">
+    <span class="tag">FINAL RESPONSE</span>
+    <span class="status">● COMPLETE</span>
+  </div>
+
+  <div class="line"></div>
+
+  <h1 id="heading">Interesting.</h1>
+
+  <div class="response" id="message"></div>
+
+  <div class="footer">
+    ANYWAY. YOU KNOW WHERE TO FIND ME.
+  </div>
+
+</section>
+
+
+<script>
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const username = document
+    .getElementById("username")
+    .value.trim().toLowerCase();
+
+  const password = document
+    .getElementById("password")
+    .value.trim().toLowerCase();
+
+  if (
+    username.includes("fejiro") &&
+    password === "omasibro"
+  ) {
+    document.getElementById("login")
+      .classList.add("hidden");
+
+    document.getElementById("question")
+      .classList.remove("hidden");
+
+  } else {
+    document.getElementById("error").textContent =
+      "Incorrect credentials. Try again.";
+  }
+});
+
+function yes() {
+  showResponse(
+    "I KNEW IT.",
+    "Ik you're obsessed with me brochacho 🫶"
+  );
+}
+
+function no() {
+  showResponse(
+    "Interesting decision.",
+    "I hate you. GTFO, you're already mine. No one's taking you from me."
+  );
+}
+
+function showResponse(title, message) {
+  document.getElementById("question")
+    .classList.add("hidden");
+
+  document.getElementById("response")
+    .classList.remove("hidden");
+
+  document.getElementById("heading").textContent = title;
+  document.getElementById("message").textContent = message;
+}
+
+</script>
+
+</body>
+</html>
+
